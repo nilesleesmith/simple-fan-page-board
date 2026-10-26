@@ -1,13 +1,15 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
+const { ObjectID } = require('mongodb')
 
-var db, collection;
+let db, collection;
 
-const configDB = {"url":process.env.MONGODB_URI} 
+const configDB = { "url": process.env.MONGODB_URI }
 const dbName = "demo";
+console.log(configDB)
 
 app.listen(3000, () => {
   MongoClient.connect(configDB.url, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
